@@ -1,0 +1,20 @@
+{
+    "name": "viacreative/sudo-su",
+    "description": "A utility package for logging in as other users",
+    "keywords": ["laravel", "debugging"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Terry Harvey",
+            "email": "contact@terryharvey.co.uk"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "VIACreative\\SudoSu\\": "src/"
+        }
+    }
+}
