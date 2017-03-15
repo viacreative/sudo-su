@@ -7,18 +7,18 @@
 A Laravel 5.4 utility package to enable developers to log in as other users during development.
 
 
-## Install
+## Installation
 To install the package, simply follow the steps below.
 
-Install the package using Composer
+Install the package using Composer:
 
 ```
 $ composer require viacreative/sudo-su
 ```
 
-Add the package's service provider to your app in your project's `AppServiceProvider`.
+Add the package's service provider to your app in your project's `AppServiceProvider`:
 
-```
+```php
 class AppServiceProvider extends ServiceProvider
 {
     public function register()
@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 ⚠️  *Warning:* You should not register the provider globally like usual in the `config/app.php` file. View the disclaimer [here](#disclaimer---danger) for more information.
 
 
-Finally, publish the package's assets (the package won't work without this).
+Finally, publish the package's assets (the package won't work without this):
 
 ```
 $ php artisan vendor:publish
