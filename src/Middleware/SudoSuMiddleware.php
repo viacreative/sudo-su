@@ -22,8 +22,10 @@ class SudoSuMiddleware
         } catch (Exception $e) {
             $this->handleException($request, $e);
         }
-
-        $this->sudoSu->injectToView($response);
+        
+        if (!$request->expectsJson()) {
+            $this->sudoSu->injectToView($response);
+        }
 
         return $response;
     }
