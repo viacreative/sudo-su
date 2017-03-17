@@ -4,9 +4,9 @@ namespace VIACreative\SudoSu;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -29,20 +29,25 @@ class ServiceProvider extends BaseServiceProvider
         ], 'config');
 
         if ($this->configExists() && $this->tldIsAllowed()) {
-            $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sudosu');
-
-            // Add an inline view composer for the user-selector
-            View::composer('sudosu::user-selector', function ($view) {
-                $sudosu = App::make(SudoSu::class);
-
-                $view->with([
-                    'users' => $sudosu->getUsers(),
-                    'hasSudoed' => $sudosu->hasSudoed(),
-                    'originalUser' => $sudosu->getOriginalUser(),
-                    'currentUser' => Auth::user()
-                ]);
-            });
+            $this->registerViews();
         }
+    }
+    
+    protected function registerViews()
+    {
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sudosu');
+
+        // Add an inline view composer for the user-selector
+        View::composer('sudosu::user-selector', function ($view) {
+            $sudosu = App::make(SudoSu::class);
+
+            $view->with([
+                'users' => $sudosu->getUsers(),
+                'hasSudoed' => $sudosu->hasSudoed(),
+                'originalUser' => $sudosu->getOriginalUser(),
+                'currentUser' => Auth::user()
+            ]);
+        });   
     }
 
     protected function tldIsAllowed()
