@@ -35,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
 Include the partial in your layout file.
 
 ```php
-@if (env('APP_DEBUG')
+@if (env('APP_DEBUG'))
     @include('sudosu::user-selector')
 @endif
 ```
