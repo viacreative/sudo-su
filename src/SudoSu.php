@@ -81,7 +81,7 @@ class SudoSu
         return $this->session->has('sudosu.has_sudoed');
     }
 
-    protected function getUsers()
+    public function getUsers()
     {
         if ($this->usersCached) {
             return $this->usersCached;
