@@ -63,4 +63,4 @@ This package can pose a serious security issue if used incorrectly, as anybody w
 
 By default, the package will disable itself on any domains that don't have a TLD of `.dev` or `.local`. This is a security measure to reduce the risk of accidentally enabling the package in production. If you have a different TLD in development, you can edit the config option `sudosu.allowed_tlds`.
 
-By using this package, you agree that VIA Creative and the author(s) of this package cannot be held responsible for any damages caused by using this package.
+By using this package, you agree that VIA Creative and the contributors of this package cannot be held responsible for any damages caused by using this package.
