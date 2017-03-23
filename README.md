@@ -32,6 +32,13 @@ class AppServiceProvider extends ServiceProvider
 
 ⚠️  *Warning:* You should not register the provider globally like usual in the `config/app.php` file. View the disclaimer [here](#disclaimer---danger) for more information.
 
+Include the partial in your layout file.
+
+```php
+@if (env('APP_DEBUG'))
+    @include('sudosu::user-selector')
+@endif
+```
 
 Finally, publish the package's assets (the package won't work without this):
 
