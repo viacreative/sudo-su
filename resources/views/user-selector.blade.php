@@ -25,7 +25,7 @@
         @endif
 
         <form action="{{ route('sudosu.login_as_user') }}" method="post">
-            <select name="userId" onchange="this.form.submit()">
+            <select name="sudosuUserId" onchange="this.form.submit()">
                 <option disabled selected>Sudo Su</option>
 
                 @foreach ($users as $user)
