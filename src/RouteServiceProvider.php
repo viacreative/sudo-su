@@ -17,8 +17,8 @@ class RouteServiceProvider extends BaseServiceProvider
             Route::post('/sudosu/login-as-user', 'SudoSuController@loginAsUser')
                 ->name('sudosu.login_as_user');
 
-            Route::post('/sudosu/return', 'SudoSuController@return')
-                ->name('sudosu.return');
+            Route::post('/sudosu/logout', 'SudoSuController@logout')
+                ->name('sudosu.logout');
         });
     }
 }

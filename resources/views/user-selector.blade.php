@@ -18,7 +18,7 @@
                 </div>
             @endif
             
-            <form action="{{ route('sudosu.return') }}" method="post">
+            <form action="{{ route('sudosu.logout') }}" method="post">
                 {!! csrf_field() !!}
                 <input type="submit" class="sudoSu__resetBtn" value="{{ $originalUser ? 'Return to original user' : 'Log out' }}">
             </form>

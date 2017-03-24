@@ -23,15 +23,31 @@ class SudoSu
         $this->session = $session;
     }
 
-    public function loginAsUser($userId, $currentUserId)
+    /**
+     * Stores the ID of the current user in the session so we can return
+     * back to the original account later, then logs the user in
+     * as the user with the given ID.
+     *
+     * @param integer $userId
+     * @param integer $originalUserId
+     * @return void
+     */
+    public function loginAsUser($userId, $originalUserId)
     {
         $this->session->put('sudosu.has_sudoed', true);
-        $this->session->put($this->sessionKey, $currentUserId);
+        $this->session->put($this->sessionKey, $originalUserId);
 
         $this->auth->loginUsingId($userId);
     }
 
-    public function return()
+    /**
+     * Logs the user out of the current authenticated account, then returns
+     * the user back to their original account using the ID stored in the
+     * session (if it exists).
+     *
+     * @return bool
+     */
+    public function logout()
     {
         if (!$this->hasSudoed()) {
             return false;
