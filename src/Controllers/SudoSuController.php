@@ -17,7 +17,7 @@ class SudoSuController extends Controller
 
     public function loginAsUser(Request $request)
     {
-        $this->sudoSu->loginAsUser($request->sudosuUserId, $request->originalUserId);
+        $this->sudoSu->loginAsUser($request->userId, $request->originalUserId);
 
         return redirect()->back();
     }
