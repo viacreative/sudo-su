@@ -1,7 +1,5 @@
 ![Demonstration](https://d78vgg4relhwk.cloudfront.net/sudo-su.gif)
 
----
-
 ![Licence: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 A Laravel 5.4 utility package to enable developers to log in as other users during development.
