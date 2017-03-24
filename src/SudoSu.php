@@ -24,10 +24,12 @@ class SudoSu
     }
 
     /**
-     * Log the sudosu user in and preserve the original user id if exists
+     * Stores the ID of the current user in the session so we can return
+     * back to the original account later, then logs the user in
+     * as the user with the given ID.
      *
-     * @param string $userId
-     * @param string|null $originalUserId
+     * @param integer $userId
+     * @param integer $originalUserId
      * @return void
      */
     public function loginAsUser($userId, $originalUserId)
@@ -39,7 +41,9 @@ class SudoSu
     }
 
     /**
-     * Log the sudosu user out
+     * Logs the user out of the current authenticated account, then returns
+     * the user back to their original account using the ID stored in the
+     * session (if it exists).
      *
      * @return bool
      */
