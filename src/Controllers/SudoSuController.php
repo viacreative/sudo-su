@@ -22,9 +22,9 @@ class SudoSuController extends Controller
         return redirect()->back();
     }
 
-    public function return(Request $request)
+    public function logout(Request $request)
     {
-        $this->sudoSu->return();
+        $this->sudoSu->logout();
 
         return redirect()->back();
     }

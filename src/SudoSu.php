@@ -31,7 +31,12 @@ class SudoSu
         $this->auth->loginUsingId($userId);
     }
 
-    public function return()
+    /**
+     * Log the sudosu user out
+     *
+     * @return bool
+     */
+    public function logout()
     {
         if (!$this->hasSudoed()) {
             return false;
