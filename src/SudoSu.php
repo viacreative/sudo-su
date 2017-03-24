@@ -26,16 +26,16 @@ class SudoSu
     /**
      * Log the sudosu user in and preserve the original user id if exists
      *
-     * @param string $sudosuUserId
+     * @param string $userId
      * @param string|null $originalUserId
      * @return void
      */
-    public function loginAsUser($sudosuUserId, $originalUserId)
+    public function loginAsUser($userId, $originalUserId)
     {
         $this->session->put('sudosu.has_sudoed', true);
         $this->session->put($this->sessionKey, $originalUserId);
 
-        $this->auth->loginUsingId($sudosuUserId);
+        $this->auth->loginUsingId($userId);
     }
 
     /**
