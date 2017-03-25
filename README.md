@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        if (env('APP_DEBUG')) {
+        if (config('app.debug')) {
             $this->app->register('VIACreative\SudoSu\ServiceProvider');
         }
     }
@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
 Include the partial in your layout file.
 
 ```php
-@if (env('APP_DEBUG'))
+@if (config('app.debug'))
     @include('sudosu::user-selector')
 @endif
 ```
