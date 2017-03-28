@@ -13,7 +13,7 @@ class ServiceProvider extends BaseServiceProvider
 {
     public function register()
     {
-        if ($this->configExists() && $this->tldIsAllowed()) {
+        if ($this->configExists() && $this->domainAllowed()) {
             $this->app->register(RouteServiceProvider::class);
         }
     }
@@ -28,11 +28,11 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__.'/../config/sudosu.php' => config_path('sudosu.php')
         ], 'config');
 
-        if ($this->configExists() && $this->tldIsAllowed()) {
+        if ($this->configExists() && $this->domainAllowed()) {
             $this->registerViews();
         }
     }
-    
+
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sudosu');
@@ -50,25 +50,41 @@ class ServiceProvider extends BaseServiceProvider
         });   
     }
 
-    protected function tldIsAllowed()
+    /**
+     * Check if the domain is allowed.
+     *
+     * @return bool
+     */
+    protected function domainAllowed()
     {
-        $requestTld = $this->getRequestTld();
-        $allowedTlds = Config::get('sudosu.allowed_tlds');
+        $allowedDomains = Config::get('sudosu.domains');
 
-        return in_array($requestTld, $allowedTlds);
+        // Split out the request url into the domain-name and port
+        $requestData = parse_url(Request::url());
+        $domain = $requestData['host'];
+        $port = isset($requestData['port']) ? $requestData['port'] : null;
+
+        // Create a regex based on the domains
+        foreach($allowedDomains as $allowedDomain) {
+            $regex = "/$allowedDomain$/";
+
+            // Replace * with all chars
+            $regex = str_replace('*', '(.*)', $regex);
+
+            // Check the regex agains the domain.
+            if ($port && preg_match($regex, "$domain:$port") || (!$port && preg_match($regex, $domain))) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    protected function getRequestTld()
-    {
-        $requestHost = parse_url(Request::url())['host'];
-        $exploded = explode('.', $requestHost);
-        $requestTld = end($exploded);
-
-        return $requestTld;
-    }
-
+    /**
+     * @return bool
+     */
     protected function configExists()
     {
-        return is_array(Config::get('sudosu.allowed_tlds'));
+        return is_array(Config::get('sudosu.domains'));
     }
 }
