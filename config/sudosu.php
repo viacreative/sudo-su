@@ -14,8 +14,8 @@ return [
     | .local, simply add it to the arrow below.
     |
      */
-    
-    'allowed_tlds' => ['dev', 'local'],
+
+    'allowed_tlds'      => ['dev', 'local'],
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,17 @@ return [
     | displayed in the select dropdown. This must be an Eloquent Model instance.
     |
      */
-    
-    'user_model' => App\User::class
-    
+
+    'user_model'        => App\User::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Display attribute
+    |--------------------------------------------------------------------------
+    |
+    | Field of the User model that is displayed in the dropdown.
+    |
+     */
+    'display_attribute' => 'name',
+
 ];

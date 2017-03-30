@@ -5,19 +5,19 @@
     <div class="sudoSu__btn {{ $hasSudoed ? 'sudoSu__btn--hasSudoed' : '' }}" id="sudosu-js-btn">
         <i class="fa fa-user-secret" aria-hidden="true"></i>
     </div>
-    
+
     <div class="sudoSu__interface {{ $hasSudoed ? 'sudoSu__interface--hasSudoed' : '' }} hidden" id="sudosu-js-interface">
         @if ($hasSudoed)
             <div class="sudoSu__infoLine">
                 You are using account: <span>{{ $currentUser->name }}</span>
             </div>
-            
+
             @if ($originalUser)
                 <div class="sudoSu__infoLine">
                     You are logged in as: <span>{{ $originalUser->name }}</span>
                 </div>
             @endif
-            
+
             <form action="{{ route('sudosu.logout') }}" method="post">
                 {!! csrf_field() !!}
                 <input type="submit" class="sudoSu__resetBtn" value="{{ $originalUser ? 'Return to original user' : 'Log out' }}">
@@ -29,10 +29,10 @@
                 <option disabled selected>Sudo Su</option>
 
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->id }}">{{ $user[config('sudosu.display_attribute', 'name')] }}</option>
                 @endforeach
             </select>
-            
+
             {!! csrf_field() !!}
 
             <input type="hidden" name="originalUserId" value="{{ $originalUser->id ?? null }}">
