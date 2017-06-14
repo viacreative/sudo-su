@@ -11,16 +11,6 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
 {
-    /**
-     * @var \VIACreative\SudoSu\DomainRestricter
-     */
-    protected $restricter;
-
-    public function __construct(DomainRestricter $restricter)
-    {
-        $this->restricter = $restricter;
-    }
-
     public function register()
     {
         if ($this->configExists() && $this->domainAllowed()) {
@@ -28,7 +18,10 @@ class ServiceProvider extends BaseServiceProvider
         }
     }
 
-    public function boot()
+    /**
+     * @param \VIACreative\SudoSu\DomainRestricter $restricter
+     */
+    public function boot(DomainRestricter $restricter)
     {
         $this->publishes([
             __DIR__ . '/../resources/assets/compiled' => public_path('sudo-su/'),
@@ -38,7 +31,7 @@ class ServiceProvider extends BaseServiceProvider
             __DIR__.'/../config/sudosu.php' => config_path('sudosu.php')
         ], 'config');
 
-        if ($this->configExists() && $this->restricter->check(Request::url())) {
+        if ($this->configExists() && $restricter->check(Request::url())) {
             $this->registerViews();
         }
     }
