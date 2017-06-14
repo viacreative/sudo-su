@@ -47,9 +47,9 @@ $ php artisan vendor:publish
 ## Config
 After running `vendor:publish`, a config file called `sudosu.php` should appear in your project. Within here, there are two configuration values:
 
-**sudosu.allowed_tlds `array`**
+**sudosu.domains `array`**
 
-By default, the package will disable itself on any domains that don't have a TLD of `.dev` or `.local`. This is a security measure to reduce the risk of accidentally enabling the package in production. If you have a different TLD in development, you can edit the config option `sudosu.allowed_tlds`.
+Here you can specify the domains that the package should be active on. By default it contains the TLD's defined in https://tools.ietf.org/html/rfc2606. This is a security measure to reduce the risk of accidentally enabling the package in production. If you have a different domain in development, you can edit the config option `sudosu.domains`.
 
 **sudosu.user_model `string`**
 
@@ -59,6 +59,6 @@ The path to the application User model. This will be used to retrieve the users 
 ## Disclaimer - DANGER!
 This package can pose a serious security issue if used incorrectly, as anybody will be able to take control of any user's account. Please ensure that the service provider is only registered when the app is in a debug/local environment.
 
-By default, the package will disable itself on any domains that don't have a TLD of `.dev` or `.local`. This is a security measure to reduce the risk of accidentally enabling the package in production. If you have a different TLD in development, you can edit the config option `sudosu.allowed_tlds`.
+By default, the package will disable itself on any domains that don't have a TLD of `.localhost`, `.test` or `.example`. This is a security measure to reduce the risk of accidentally enabling the package in production. If you have a different domain in development, you can edit the config option `sudosu.domains`.
 
 By using this package, you agree that VIA Creative and the contributors of this package cannot be held responsible for any damages caused by using this package.

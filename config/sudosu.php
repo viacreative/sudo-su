@@ -4,18 +4,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Allowed TLDs - Use with caution!
+    | Allowed Domains
     |--------------------------------------------------------------------------
     |
-    | This is to prevent mis-usage during production if debug mode is
-    | unintentionally left active. The package will detect the site
-    | URL and if the TLD isn't present in this array, it will not
-    | activate. If your development TLD is different to .dev or
-    | .local, simply add it to the arrow below.
+    | By default this contains the tld's in https://tools.ietf.org/html/rfc2606
+    | If you want you can add your own domain, as well as a port if needed.
+    | E.g.: localhost:8080, foobar.dev, *.foobar.dev, etc.
     |
      */
-    
-    'allowed_tlds' => ['dev', 'local'],
+
+    'domains' => [
+        '*.example',
+        '*.localhost',
+        '*.test',
+    ],
 
     /*
     |--------------------------------------------------------------------------
