@@ -89,7 +89,7 @@ class SudoSu
 
         $userId = $this->session->get($this->sessionKey);
 
-        return $this->getUsers()->where('id', $userId)->first();
+        return $this->getUsers()->where($this->getUserModel()->getKeyName(), $userId)->first();
     }
 
     public function hasSudoed()
