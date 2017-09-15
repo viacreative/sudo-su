@@ -29,13 +29,13 @@
                 <option disabled selected>Sudo Su</option>
 
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                    <option value="{{ $user->getKey($user->getKeyName()) }}">{{ $user->name }}</option>
                 @endforeach
             </select>
             
             {!! csrf_field() !!}
 
-            <input type="hidden" name="originalUserId" value="{{ $originalUser->id ?? null }}">
+            <input type="hidden" name="originalUserId" value="{{ $originalUser->getKey($originalUser->getKeyName()) ?? null }}">
         </form>
     </div>
 </div>
