@@ -29,4 +29,18 @@ return [
     
     'user_model' => App\User::class
     
+    
+    /*
+     |-------------------------------------------------------------------------
+     | Auth Guard
+     |-------------------------------------------------------------------------
+     | If in my application has more than one domain and login entry.
+     | For example:
+     | the 'www.domain.com' guard is 'web',
+     | the 'bbs.domain.com' guard is 'bbs'
+     | So, I wangt to set the current guard is 'bbs'
+     |-------------------------------------------------------------------------
+     */
+    'current_guard' => 'bbs',
+    
 ];
