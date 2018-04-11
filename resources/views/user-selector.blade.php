@@ -9,18 +9,18 @@
     <div class="sudoSu__interface {{ $hasSudoed ? 'sudoSu__interface--hasSudoed' : '' }} hidden" id="sudosu-js-interface">
         @if ($hasSudoed)
             <div class="sudoSu__infoLine">
-                You are using account: <span>{{ $currentUser->name }}</span>
+                You are using account: <span>{{ isset($currentUser) && $currentUser ? $currentUser->name : '' }}</span>
             </div>
             
             @if ($originalUser)
                 <div class="sudoSu__infoLine">
-                    You are logged in as: <span>{{ $originalUser->name }}</span>
+                    You are logged in as: <span>{{ isset($originalUser) && $originalUser ? $originalUser->name : '' }}</span>
                 </div>
             @endif
             
             <form action="{{ route('sudosu.logout') }}" method="post">
                 {!! csrf_field() !!}
-                <input type="submit" class="sudoSu__resetBtn" value="{{ $originalUser ? 'Return to original user' : 'Log out' }}">
+                <input type="submit" class="sudoSu__resetBtn" value="{{ isset($originalUser) && $originalUser ? 'Return to original user' : 'Log out' }}">
             </form>
         @endif
 
