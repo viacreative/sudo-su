@@ -55,6 +55,10 @@ By default, the package will disable itself on any domains that don't have a TLD
 
 The path to the application User model. This will be used to retrieve the users displayed in the select dropdown. This must be an Eloquent Model instance. This is set to `App\User` by default.
 
+**sudosu.current_guard `string`**
+
+If your site has multiple login modules, you can set the `Auth guard` to select who you are going to use `sudo-su`.
+
 
 ## Disclaimer - DANGER!
 This package can pose a serious security issue if used incorrectly, as anybody will be able to take control of any user's account. Please ensure that the service provider is only registered when the app is in a debug/local environment.

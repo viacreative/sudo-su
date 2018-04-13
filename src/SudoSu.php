@@ -15,11 +15,13 @@ class SudoSu
     protected $session;
     protected $sessionKey = 'sudosu.original_id';
     protected $usersCached = null;
+    protected $currentGuard;
 
     public function __construct(Application $app, AuthManager $auth, SessionManager $session)
     {
         $this->app = $app;
-        $this->auth = $auth;
+        $this->currentGuard = $this->getCurrentGuard();
+        $this->auth = $auth->guard($this->currentGuard);
         $this->session = $session;
     }
 
@@ -112,5 +114,10 @@ class SudoSu
     {
         $userModel = Config::get('sudosu.user_model');
         return $this->app->make($userModel);
+    }
+    
+    public function getCurrentGuard()
+    {
+        return Config::get('sudosu.current_guard');
     }
 }

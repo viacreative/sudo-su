@@ -40,12 +40,14 @@ class ServiceProvider extends BaseServiceProvider
         // Add an inline view composer for the user-selector
         View::composer('sudosu::user-selector', function ($view) {
             $sudosu = App::make(SudoSu::class);
+            
+            $guard = $sudosu->getCurrentGuard();
 
             $view->with([
                 'users' => $sudosu->getUsers(),
                 'hasSudoed' => $sudosu->hasSudoed(),
                 'originalUser' => $sudosu->getOriginalUser(),
-                'currentUser' => Auth::user()
+                'currentUser' => Auth::guard($guard)->user()
             ]);
         });   
     }
