@@ -37,6 +37,8 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sudosu');
 
+        $view_name = config('sudosu.view_name', 'sudosu::user-selector');
+
         // Add an inline view composer for the user-selector
         View::composer('sudosu::user-selector', function ($view) {
             $sudosu = App::make(SudoSu::class);
