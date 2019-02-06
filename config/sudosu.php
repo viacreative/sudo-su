@@ -27,6 +27,8 @@ return [
     |
      */
     
-    'user_model' => App\User::class
+    'user_model' => App\User::class,
+    
+    'view_name' => 'vendor.sudo-su.user-selector'
     
 ];
