@@ -14,7 +14,7 @@ return [
     | .local, simply add it to the arrow below.
     |
      */
-    
+
     'allowed_tlds' => ['dev', 'local'],
 
     /*
@@ -26,7 +26,17 @@ return [
     | displayed in the select dropdown. This must be an Eloquent Model instance.
     |
      */
-    
-    'user_model' => App\User::class
-    
+
+    'user_model' => App\User::class,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Middleware for sudosu
+    |--------------------------------------------------------------------------
+    |
+    | Define the middleware for sudosu, eg. ['web', 'can:sudoer'] means the cross
+    | login user must have the sudoer permission or role.
+    |
+     */
+    'middleware' => ['web',],
 ];

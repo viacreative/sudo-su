@@ -16,5 +16,12 @@
         "psr-4": {
             "VIACreative\\SudoSu\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "VIACreative\\SudoSu\\ServiceProvider"
+            ]
+        }
     }
 }
