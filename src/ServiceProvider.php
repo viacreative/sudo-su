@@ -52,6 +52,9 @@ class ServiceProvider extends BaseServiceProvider
 
     protected function tldIsAllowed()
     {
+        if (false === Config::get('sudosu.check_tlds')) {
+            return true;
+        }
         $requestTld = $this->getRequestTld();
         $allowedTlds = Config::get('sudosu.allowed_tlds');
 
