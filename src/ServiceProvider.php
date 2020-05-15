@@ -32,7 +32,7 @@ class ServiceProvider extends BaseServiceProvider
             $this->registerViews();
         }
     }
-    
+
     protected function registerViews()
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'sudosu');
@@ -47,11 +47,14 @@ class ServiceProvider extends BaseServiceProvider
                 'originalUser' => $sudosu->getOriginalUser(),
                 'currentUser' => Auth::user()
             ]);
-        });   
+        });
     }
 
     protected function tldIsAllowed()
     {
+        if (false === Config::get('sudosu.check_tlds')) {
+            return true;
+        }
         $requestTld = $this->getRequestTld();
         $allowedTlds = Config::get('sudosu.allowed_tlds');
 
